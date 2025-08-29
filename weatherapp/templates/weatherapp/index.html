@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}شرایط آب و هوا{% endblock title %}
+{% block content %}
+    <div class="weather-content">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="نام شهر خود را وارد کنید" required>
+            <br>
+            <input type="submit" value="جستجو">
+        </form>
+        
+        {% if data %}
+        <div class="weather-info">
+            <img src="https://openweathermap.org/img/wn/{{data.weather.0.icon}}@2x.png" alt="آیکون آب و هوا">
+            <p>دما: {{data.main.temp}}°C</p>
+            <p>رطوبت: {{data.main.humidity}}%</p>
+            <p>شرایط: {{data.weather.0.description}}</p>
+            <p>تاریخ: {{date}}</p>
+        </div>
+        {% endif %}
+        
+        {% if error %}
+        <div class="weather-error">
+            <p>{{error}}</p>
+        </div>
+        {% endif %}
+    </div>
+{% endblock content %}
