@@ -36,7 +36,7 @@ class Index(View):
                 )
             return render(request,'weatherapp/index.html',{'data':data,'date':date})  
         except UnboundLocalError:
-            error='ther is not any city with this name!'
+            error='There is not any city with this name!'
             return render(request,'weatherapp/index.html',{'error':error}) 
 
     def get(self,request):
